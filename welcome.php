@@ -39,25 +39,27 @@ $total_invoice = 0;
             <?php echo $usernamee ?>
         </h1>
         <ul>
-            <li><img src="/Invoice-gen/logo.png" alt="LOGO" srcset="" class="logo"></li>
-            <li><a href="/Invoice-gen/index.php" id="home"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="/Invoice-gen/welcome.php" id="dashboard"><i class="fa-solid fa-table-columns"></i>
+            <li><img src="/logo.png" alt="LOGO" srcset="" class="logo"></li>
+            <li><a href="/index.php" id="home"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/welcome.php" id="dashboard"><i class="fa-solid fa-table-columns"></i>
                     Dashboard</a>
             </li>
-            <li><a href="/Invoice-gen/login.php" id="login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+            <li><a href="/login.php" id="login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
             </li>
-            <li><a href="/Invoice-gen/signup.php" id="signup"><i class="fa-solid fa-user-plus"></i> Sign up</a>
+            <li><a href="/signup.php" id="signup"><i class="fa-solid fa-user-plus"></i> Sign up</a>
             </li>
-            <li><a href="/Invoice-gen/about.php" id="about"><i class="fa-solid fa-address-card"></i> About</a></li>
-            <li><a href="/Invoice-gen/contact.php" id="contactus"><i class="fa-solid fa-address-book"></i> Contact
+            <li><a href="/about.php" id="about"><i class="fa-solid fa-address-card"></i> About</a></li>
+            <li><a href="/contact.php" id="contactus"><i class="fa-solid fa-address-book"></i> Contact
                     Us</a></li>
-            <li><a href="/Invoice-gen/logout.php" id="logout"><i class="fa-solid fa-power-off"></i> Logout</a></li>
+            <li><a href="/logout.php" id="logout"><i class="fa-solid fa-power-off"></i> Logout</a></li>
         </ul>
     </div>
 
 
     <div class="right-section">
         <div class="dashboard-section">
+        <button class="add_invoice_btn" onclick="location.href = '/invoice.php';"><i
+                class="fa-solid fa-plus"></i> Add Invoice</button>
             <div class="left-box">
                 <!-- Finding number of invoices -->
                 <i class="fa-solid fa-file-invoice fa-lg"></i>
@@ -92,13 +94,14 @@ $total_invoice = 0;
                 <!-- for finding number of customers -->
                 <i class="fa-solid fa-person fa-lg"></i>
                 <?php
-                $sql3 = "SELECT * FROM `cust_info` WHERE username='$usernamee' GROUP BY cname;";
+                $sql3 = "SELECT * FROM `cust_info` WHERE username='$usernamee';";
                 $sql3result = mysqli_query($conn, $sql3);
                 $num_of_customers = mysqli_num_rows($sql3result);
 
                 echo "<p> " . $num_of_customers . " Customers</p>";
                 ?>
             </div>
+           
         </div>
         <div class="invoice-table">
             <!-- GENERATE PRESENT INVOICES -->
@@ -179,12 +182,12 @@ $total_invoice = 0;
 
                             $total_invoice += $col4;
                             //Printing columns
-                            $viewloc = '/Invoice-gen/view_invoice.php?inv_id=' . $col1 . '&what=view';
-                            $printloc = '/Invoice-gen/view_invoice.php?inv_id=' . $col1 . '&what=print';
-                            $downloadloc = '/Invoice-gen/view_invoice.php?inv_id=' . $col1 . '&what=download';
-                            $emailloc = '/Invoice-gen/view_invoice.php?inv_id=' . $col1 . '&what=email';
-                            $editloc = '/Invoice-gen/edit_invoice.php?inv_id=' . $col1;
-                            $removeloc = '/Invoice-gen/remove_invoice.php?inv_id=' . $col1;
+                            $viewloc = '/view_invoice.php?inv_id=' . $col1 . '&what=view';
+                            $printloc = '/view_invoice.php?inv_id=' . $col1 . '&what=print';
+                            $downloadloc = '/view_invoice.php?inv_id=' . $col1 . '&what=download';
+                            $emailloc = '/view_invoice.php?inv_id=' . $col1 . '&what=email';
+                            $editloc = '/edit_invoice.php?inv_id=' . $col1;
+                            $removeloc = '/remove_invoice.php?inv_id=' . $col1;
                             $rnum = $i + 1;
                             echo "<tr>
                             <td class='row$rnum' id='row$rnum'>$col1</td>
@@ -204,12 +207,11 @@ $total_invoice = 0;
                 </tbody>
             </table>
         </div>
-        <button class="add_invoice_btn" onclick="location.href = '/Invoice-gen/invoice.php';"><i
-                class="fa-solid fa-plus"></i> Add Invoice</button>
+        
     </div>
 </body>
 <!-- <a href='".$removeloc."' class='table-btn'> -->
-<script src="welcome.js">
+<script src="/welcome.js">
 </script>
 
 

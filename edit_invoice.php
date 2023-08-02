@@ -350,7 +350,7 @@ while ($row3 = mysqli_fetch_assoc($Iresult)) {
             </div>
 
             <div class="final-buttons">
-                <button type="button" class="cancel-btn" onclick="location.href = '/Invoice-gen/welcome.php';"><i
+                <button type="button" class="cancel-btn" onclick="location.href = '/welcome.php';"><i
                         class="fa-solid fa-xmark"></i> Cancel</button>
                 <button type="submit" class="insert-btn"><i class="fa-solid fa-plus"></i> Update Invoice</button>
             </div>

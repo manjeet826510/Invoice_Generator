@@ -79,7 +79,7 @@ $itemresult = mysqli_query($conn, $Itemsql);
 
     <script>
     setTimeout(() => {
-        window.location.href = '/Invoice-gen/welcome.php';
+        window.location.href = '/welcome.php';
     }, 2000);
     </script>
 </body>

@@ -29,22 +29,22 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
             echo '<h1>Welcome '.$username.'</h1>'
         ?>
         <ul>
-            <li><img src="/Invoice-gen/logo.png" alt="LOGO" srcset="" class="logo"></li>
-            <li><a href="/Invoice-gen/index.php" id="home"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="/Invoice-gen/welcome.php" id="dashboard"><i class="fa-solid fa-table-columns"></i>
+            <li><img src="/logo.png" alt="LOGO" srcset="" class="logo"></li>
+            <li><a href="/index.php" id="home"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/welcome.php" id="dashboard"><i class="fa-solid fa-table-columns"></i>
                     Dashboard</a>
             </li>
-            <li><a href="/Invoice-gen/login.php" id="login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+            <li><a href="/login.php" id="login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
             </li>
             <li><a href="/signup.php" id="signup"><i class="fa-solid fa-user-plus"></i> Sign up</a>
             </li>
-            <li><a href="/Invoice-gen/about.php" id="about"><i class="fa-solid fa-address-card"></i> About</a></li>
-            <li><a href="/Invoice-gen/contact.php" id="contactus"><i class="fa-solid fa-address-book"></i> Contact
+            <li><a href="/about.php" id="about"><i class="fa-solid fa-address-card"></i> About</a></li>
+            <li><a href="/contact.php" id="contactus"><i class="fa-solid fa-address-book"></i> Contact
                     Us</a></li>
             <?php
                 if($username)
                 {
-                    echo '<li><a href="/Invoice-gen/logout.php" id="logout"><i class="fa-solid fa-power-off"></i> Logout</a></li>';
+                    echo '<li><a href="/logout.php" id="logout"><i class="fa-solid fa-power-off"></i> Logout</a></li>';
                 }
         ?>
         </ul>
@@ -88,10 +88,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         </div>
         <p class="effortless">Effortlessly create and manage your invoices.</p>
         <div class="redirect-section">
-            <a href="/Invoice-gen/signup.php" class="signup-btn">Sign up Now !</a>
+            <a href="/signup.php" class="signup-btn">Sign up Now !</a>
             <div class="already">
                 <p>Already signed up?</p>
-             <a href="/Invoice-gen/login.php" class="login-btn">Log in</a>
+             <a href="/login.php" class="login-btn">Log in</a>
             </div>
         </div>
     </div>

@@ -293,90 +293,87 @@ while ($row3 = mysqli_fetch_assoc($Iresult)) {
 
 
     <!-- Scripts -->
-    <script src="view_script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
-        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-    let inv_id = "<?php echo $inv_id ?>";
+    <!-- Scripts -->
+<script src="view_script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+    integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    // Add event listener to the "View Invoice" button
+    document.addEventListener("DOMContentLoaded", function() {
+        const viewBtn = document.getElementById("view-invoice-btn");
+        viewBtn.addEventListener("click", function() {
+            var element = document.getElementById('print-this');
+            var opt = {
+                margin: 0,
+                filename: 'invoice-<?php echo $inv_id ?>.pdf',
+                image: {
+                    type: 'jpeg',
+                    quality: 0.98
+                },
+                html2canvas: {
+                    scale: 2
+                },
+                jsPDF: {
+                    unit: 'in',
+                    format: 'A4',
+                    orientation: 'portrait'
+                }
+            };
 
-    function openpdf() {
-        var element = document.getElementById('print-this');
-        var opt = {
-            margin: 0,
+            const whatToDo = '<?php echo $what ?>';
+            const loading = document.getElementById("loading-screen");
+            const emailed = document.getElementById("emailed");
 
-            filename: 'invoice-' + inv_id + '.pdf',
-            image: {
-                type: 'jpeg',
-                quality: 0.98
-            },
-            html2canvas: {
-                scale: 2
-            },
-            jsPDF: {
-                unit: 'in',
-                format: 'A4',
-                orientation: 'portrait'
-            }
-        };
+            if (whatToDo == 'view') {
+                //for viewing
+                html2pdf().set(opt).from(element).output('dataurlnewwindow');
+                setTimeout(() => {
+                    window.location.replace("/welcome.php");
+                }, 100);
+            } else if (whatToDo == 'download') {
+                //for downloading
+                html2pdf().set(opt).from(element).save();
+                setTimeout(() => {
+                    window.location.replace("/welcome.php");
+                }, 500);
 
-        const whatToDo = '<?php echo $what ?>';
-        const loading = document.getElementById("loading-screen");
-        const emailed = document.getElementById("emailed");
-
-        if (whatToDo == 'view') {
-            //for viewing
-            html2pdf().set(opt).from(element).output('dataurlnewwindow');
-            setTimeout(() => {
-                window.location.replace("/Invoice-gen/welcome.php");
-            }, 100);
-        } else if (whatToDo == 'download') {
-            //for downloading
-            html2pdf().set(opt).from(element).save();
-            setTimeout(() => {
-                window.location.replace("/Invoice-gen/welcome.php");
-            }, 500);
-
-        } else if (whatToDo == 'print') {
-
-            //for printing
-            html2pdf().from(element).toPdf().get('pdf').then(function(pdfObj) {
-                pdfObj.autoPrint();
-                window.open(pdfObj.output('bloburl'), '_blank');
-            });
-            setTimeout(() => {
-                window.location.replace("/Invoice-gen/welcome.php");
-            }, 100);
-        } else if (whatToDo == 'email') {
-            // for emailing
-            html2pdf().set(opt).from(element).toPdf().output('datauristring').then(function(pdfAsString) {
-                let dataa = {
-                    'fileDataURI': pdfAsString,
-                    'inv_id': inv_id
-                };
-                // Animation purpose
-                document.getElementById("print-this").style.display = "none";
-                loading.style.display = "block";
-                $.ajax({
-                    url: "../Invoice-gen/send_email.php",
-                    type: "POST",
-                    data: dataa,
-                    success: function(result) {
-                        document.getElementById("loading-screen").style.display = "none";
-                        emailed.style.display = "flex";
-                        setTimeout(() => {
-                            window.location.href = '/Invoice-gen/welcome.php';
-                        }, 1500);
-                        // window.location.href = '/Invoice-gen/welcome.php';
-                    }
+            } else if (whatToDo == 'print') {
+                //for printing
+                html2pdf().from(element).toPdf().get('pdf').then(function(pdfObj) {
+                    pdfObj.autoPrint();
+                    window.open(pdfObj.output('bloburl'), '_blank');
                 });
-                console.log(data);
-            });
-        }
-    }
-
-    openpdf();
-    </script>
+                setTimeout(() => {
+                    window.location.replace("/welcome.php");
+                }, 100);
+            } else if (whatToDo == 'email') {
+                // for emailing
+                html2pdf().set(opt).from(element).toPdf().output('datauristring').then(function(pdfAsString) {
+                    let dataa = {
+                        'fileDataURI': pdfAsString,
+                        'inv_id': '<?php echo $inv_id ?>'
+                    };
+                    // Animation purpose
+                    document.getElementById("print-this").style.display = "none";
+                    loading.style.display = "block";
+                    $.ajax({
+                        url: "../send_email.php",
+                        type: "POST",
+                        data: dataa,
+                        success: function(result) {
+                            document.getElementById("loading-screen").style.display = "none";
+                            emailed.style.display = "flex";
+                            setTimeout(() => {
+                                window.location.href = '/welcome.php';
+                            }, 1500);
+                        }
+                    });
+                });
+            }
+        });
+    });
+</script>
 </body>
 
 </html>

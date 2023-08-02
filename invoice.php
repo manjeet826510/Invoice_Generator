@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
@@ -12,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // FROM DETAILS
     $Bname = $_POST["Bname"];
+    // echo "Bname: " . $Bname . "<br>";
     $Bemail = $_POST["Bemail"];
     $Baddress = $_POST["Baddress"];
     $Bphone = $_POST["Bphone"];
@@ -73,7 +77,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //1 - INSERT INTO USER-ADDITIONAL
         $Bsql = "INSERT INTO `user_additional_info` (`username`, `name`, `email`, `address`, `phone`, `GST`, `inv_id`) VALUES ('$usernamee', '$Bname','$Bemail','$Baddress', '$Bphone', '$BGST', '$Ino')";
+        // echo "Bsql: " . $Bsql . "<br>";
         $Bresult = mysqli_query($conn, $Bsql);
+        // if (!$Bresult) {
+        //     echo "Error executing query: " . mysqli_error($conn);
+        // }
+        // echo "Bresult: " . $Bresult . "<br>";
 
         //2 - INSERT INTO CUSTOMER TABLE
         $Csql = "INSERT INTO `cust_info` (`inv_id`, `cname`, `caddress`, `cphone`, `cemail`,  `username`) VALUES ('$Ino', '$Cname', '$Caddress', '$Cphone', '$Cemail', '$usernamee')";
@@ -81,13 +90,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // TOTAL DETAILS
         $subtotal = $_POST["subtotal"];
-        $taxtotal = $_POST["taxtotal"];
-        $discounttotal = $_POST["discounttotal"];
+        // $taxtotal = $_POST["taxtotal"];
+        $taxtotal = str_replace('%', '', $_POST["taxtotal"]); // Remove the percentage symbol
+        // $discounttotal = $_POST["discounttotal"];
+        $discounttotal = !empty($_POST["discounttotal"]) ? $_POST["discounttotal"] : 0; // Provide a default value of 0 if empty
         $total = $_POST["total"];
 
         //3 - INSERT INTO TOTAL DETAILS
         $Tsql = "INSERT INTO `total_details` (`inv_id`, `subtotal`, `tax`, `discount`, `total`, `date`, `username`) VALUES ('$Ino', '$subtotal', '$taxtotal', '$discounttotal', '$total', '$Idate', '$usernamee')";
+        // echo "Tsql: " . $Tsql . "<br>";
         $Tresult = mysqli_query($conn, $Tsql);
+        // echo "Tresult: " . $Tresult . "<br>";
 
         //4 - INSERT ITEMS
 
@@ -254,13 +267,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div class="final-buttons">
-                <button type="button" class="cancel-btn" onclick="location.href = '/Invoice-gen/welcome.php';"><i
+                <button type="button" class="cancel-btn" onclick="location.href = '/welcome.php';"><i
                         class="fa-solid fa-xmark"></i> Cancel</button>
                 <button type="submit" class="insert-btn"><i class="fa-solid fa-plus"></i> Create Invoice</button>
             </div>
         </form>
     </div>
 </body>
-<script src="invoice_script.js"></script>
+<script src="/invoice_script.js"></script>
 
 </html>

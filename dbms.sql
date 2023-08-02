@@ -39,8 +39,8 @@ CREATE TABLE `contact_details` (
 --
 
 INSERT INTO `contact_details` (`contact_id`, `contact_name`, `contact_desc`, `contact_email`) VALUES
-(1, 'Ritik Mishra', '', '$ritikmishra7@gmail.com'),
-(2, 'Ritik Mishra', 'dfsbsevsevseffes', '$ritikmishra7@gmail.com');
+(1, 'Manjeet Kumar', '', '$manjeet826510@gmail.com'),
+(2, 'Manjeet Kumar', 'dfsbsevsevseffes', '$manjeet826510@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -52,7 +52,7 @@ CREATE TABLE `cust_info` (
   `inv_id` varchar(20) NOT NULL,
   `cname` varchar(20) NOT NULL,
   `caddress` varchar(50) NOT NULL,
-  `cphone` int(20) NOT NULL,
+  `cphone` varchar(20) NOT NULL,
   `cemail` varchar(50) NOT NULL,
   `username` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -62,10 +62,10 @@ CREATE TABLE `cust_info` (
 --
 
 INSERT INTO `cust_info` (`inv_id`, `cname`, `caddress`, `cphone`, `cemail`, `username`) VALUES
-('43532323', 'NIE', 'kfn', 12433242, 'ritikmishra7@gmail.com', 'ritik'),
-('5677', 'NIE', 'asdwq', 3556, 'Nie@gmail.com', 'ritik'),
-('78912318949', 'Ritik', 'MANANTHVADI ROAD', 2147483647, 'ritikmishra7@gmail.com', 'prateek'),
-('987666', 'TEST', 'MANANTHVADI ROAD', 2147483647, 'ritikmishra7@gmail.com', 'guru');
+('43532323', 'NSEC', 'kfn', 12433242, 'manjeet826510@gmail.com', 'manjeet'),
+('5677', 'NSEC', 'asdwq', 3556, 'nsec@gmail.com', 'manjeet'),
+('78912318949', 'Manjeet', 'PARK STREET', 2147483647, 'rahul7@gmail.com', 'rahul'),
+('987666', 'TEST', 'PARK STREET', 2147483647, 'guru7@gmail.com', 'guru');
 
 -- --------------------------------------------------------
 
@@ -102,10 +102,10 @@ INSERT INTO `inv_info` (`inv_id`, `item_name`, `item_desc`, `item_rate`, `item_q
 
 CREATE TABLE `total_details` (
   `inv_id` varchar(20) NOT NULL,
-  `subtotal` int(100) NOT NULL,
-  `tax` int(10) NOT NULL,
-  `discount` int(100) NOT NULL,
-  `total` int(100) NOT NULL,
+  `subtotal` decimal(10, 2) NOT NULL,
+  `tax` decimal(10, 2) NOT NULL,
+  `discount` decimal(10, 2) NOT NULL,
+  `total` decimal(10, 2) NOT NULL,
   `date` date NOT NULL,
   `username` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -115,9 +115,9 @@ CREATE TABLE `total_details` (
 --
 
 INSERT INTO `total_details` (`inv_id`, `subtotal`, `tax`, `discount`, `total`, `date`, `username`) VALUES
-('43532323', 13332, 15, 5, 14565, '2022-12-21', 'ritik'),
-('5677', 44148, 18, 7, 48448, '2022-12-12', 'ritik'),
-('78912318949', 47660, 18, 5, 53427, '2022-12-15', 'prateek'),
+('43532323', 13332, 15, 5, 14565, '2022-12-21', 'manjeet'),
+('5677', 44148, 18, 7, 48448, '2022-12-12', 'manjeet'),
+('78912318949', 47660, 18, 5, 53427, '2022-12-15', 'rahul'),
 ('987666', 39495, 18, 4, 44740, '2022-12-11', 'guru');
 
 -- --------------------------------------------------------
@@ -141,9 +141,9 @@ CREATE TABLE `user_additional_info` (
 --
 
 INSERT INTO `user_additional_info` (`username`, `name`, `email`, `address`, `phone`, `GST`, `inv_id`) VALUES
-('ritik', 'Harshit', 'harshit@gmail.com', '123 road', 12312321, 'q3wer21', '43532323'),
-('ritik', 'Guru', 'guru@gmail.com', '23 Road', 124666, '36643', '5677'),
-('prateek', 'Shaukat', 'ritikmishra7@gmail.c', '2 Dilarjung Road', 8478902990, '486468464', '78912318949'),
+('manjeet', 'Rajesh', 'rajesh@gmail.com', '123 road', 12312321, 'q3wer21', '43532323'),
+('manjeet', 'Guru', 'guru@gmail.com', '23 Road', 124666, '36643', '5677'),
+('rahul', 'Shaukat', 'rahul7@gmail.c', '2 Dilarjung Road', 8478902990, '486468464', '78912318949'),
 ('guru', 'trial', 'trail@gmail.com', '111,Cossipore Road', 9903400757, '12344', '987666');
 
 -- --------------------------------------------------------
@@ -166,12 +166,12 @@ CREATE TABLE `user_info` (
 INSERT INTO `user_info` (`s_id`, `username`, `email`, `password`) VALUES
 (8, 'guru', 'guru@email.com', '$2y$10$GeOvEBqlY5HFMUUSnhe3UOKICsmHN6NDH5w4GRK5eupWjI3nhqVT6'),
 (9, 'sh', 'shaukat@email.com', '$2y$10$.UfT1hY33cIaANVdpH37A.VI0jEioq7jo5LwmLaEpaYUXv0nHcePm'),
-(11, 'rm7', 'ritikmishra7@gmail.com', '$2y$10$7E3z4KZDiRp5xkjtbI9ly.UGynDxnkbsD9KeZV/borbZh/pIiMLLe'),
-(12, 'ritik', 'ritikmishra7@gmail.com', '$2y$10$/kc4pg1Y4EGPmLKzf29ZM.1TWzLzm3lEdVcTV9K7pxq2NgBAt8IJ6'),
-(14, 'shaukat', 'shaukat@gmail.com', '$2y$10$egeL3/wxFtA9yAU0A3ntielMqhXrqg59J./l04dJBAk4MR36EXNme'),
-(15, 'prateek', 'prateek@gmail.com', '$2y$10$PvEpBKtP5zQ0MrHC251UuOu0znoXWUZHzmZQr9kUoVRrCYKB2FkMO'),
+(11, 'rm7', 'manjeet826510@gmail.com', '$2y$10$7E3z4KZDiRp5xkjtbI9ly.UGynDxnkbsD9KeZV/borbZh/pIiMLLe'),
+(12, 'manjeet', 'manjeet826510@gmail.com', '$2y$10$/kc4pg1Y4EGPmLKzf29ZM.1TWzLzm3lEdVcTV9K7pxq2NgBAt8IJ6'),
+(14, 'subh', 'subh@gmail.com', '$2y$10$egeL3/wxFtA9yAU0A3ntielMqhXrqg59J./l04dJBAk4MR36EXNme'),
+(15, 'varun', 'varun@gmail.com', '$2y$10$PvEpBKtP5zQ0MrHC251UuOu0znoXWUZHzmZQr9kUoVRrCYKB2FkMO'),
 (16, '', '', '$2y$10$42BHqwN6qbJkv2W.X.Xp3umbqEQB0vHl0sD2F1s/TRzvIgOjbCRBi'),
-(17, 'Guru11', 'gurumadwa@gmail.com', '$2y$10$ySUD7ks3Oqep9CKqawgyJ.ghgeS/D6Z3SkVRVscAe0Nu3Eb92jovi');
+(17, 'abc', 'abc@gmail.com', '$2y$10$ySUD7ks3Oqep9CKqawgyJ.ghgeS/D6Z3SkVRVscAe0Nu3Eb92jovi');
 
 --
 -- Indexes for dumped tables

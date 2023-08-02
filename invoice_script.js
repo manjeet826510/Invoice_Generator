@@ -62,6 +62,21 @@ function calculateTotal() {
   fixTotal(taxx);
 }
 
+// function fixTax() {
+//   let sub_amt = $("#subtotal").val();
+//   let tax = 0;
+//   if (Number(sub_amt) < 1000) tax = 5;
+//   else if (Number(sub_amt) >= 1000 && Number(sub_amt) < 5000) tax = 10;
+//   else if (Number(sub_amt) >= 5000 && Number(sub_amt) < 15000) tax = 15;
+//   else tax = 18;
+
+//   // Convert tax to a decimal number without the percent sign
+//   let taxDecimal = tax / 100;
+
+//   $("#taxtotal").val(tax + " %");
+//   return taxDecimal;
+// }
+
 function fixTax() {
   let sub_amt = $("#subtotal").val();
   let tax = 0;

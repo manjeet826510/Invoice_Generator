@@ -27,22 +27,22 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
         }
         ?>
         <ul>
-            <li><img src="/Invoice-gen/logo.png" alt="LOGO" srcset="" class="logo"></li>
-            <li><a href="/Invoice-gen/index.php" id="home"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="/Invoice-gen/welcome.php" id="dashboard"><i class="fa-solid fa-table-columns"></i>
+            <li><img src="/logo.png" alt="LOGO" srcset="" class="logo"></li>
+            <li><a href="/index.php" id="home"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="/welcome.php" id="dashboard"><i class="fa-solid fa-table-columns"></i>
                     Dashboard</a>
             </li>
-            <li><a href="/Invoice-gen/login.php" id="login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+            <li><a href="/login.php" id="login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
             </li>
-            <li><a href="/Invoice-gen/signup.php" id="signup"><i class="fa-solid fa-user-plus"></i> Sign up</a>
+            <li><a href="/signup.php" id="signup"><i class="fa-solid fa-user-plus"></i> Sign up</a>
             </li>
-            <li><a href="/Invoice-gen/about.php" id="about"><i class="fa-solid fa-address-card"></i> About</a></li>
-            <li><a href="/Invoice-gen/contact.php" id="contactus"><i class="fa-solid fa-address-book"></i> Contact
+            <li><a href="/about.php" id="about"><i class="fa-solid fa-address-card"></i> About</a></li>
+            <li><a href="/contact.php" id="contactus"><i class="fa-solid fa-address-book"></i> Contact
                     Us</a></li>
             <?php
                 if($username)
                 {
-                    echo '<li><a href="/Invoice-gen/logout.php" id="logout"><i class="fa-solid fa-power-off"></i> Logout</a></li>';
+                    echo '<li><a href="/logout.php" id="logout"><i class="fa-solid fa-power-off"></i> Logout</a></li>';
                 }
         ?>
         </ul>
