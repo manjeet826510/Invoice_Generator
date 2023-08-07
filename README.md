@@ -8,6 +8,7 @@ Businesses can use this Invoice Generator to generate the invoice very easily wi
 ## Demo
 
 Website is live at 👉🏻 http://13.233.139.137
+Note: First register as a user and then login to use the invoice generator
 ## Run Locally
 
 Open terminal on your local machine and clone this project using this command 👇🏻
